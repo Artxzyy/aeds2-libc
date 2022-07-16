@@ -16,6 +16,15 @@
     to use as source of studies for more specific keywords and possibilities of the C language.
     If you see something new that isn't documented in this file, these links may help:
 
+    Specifications about SETLOCALE for Windows:
+    Last accessed: 22/07/2022
+
+    https://docs.microsoft.com/pt-br/cpp/c-runtime-library/reference/setlocale-wsetlocale?view=msvc-170
+    https://docs.microsoft.com/pt-br/cpp/c-runtime-library/locale-names-languages-and-country-region-strings?view=msvc-170
+    https://docs.microsoft.com/pt-br/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c
+
+    Attributes as extern keyword in C:
+
     https://gcc.gnu.org/onlinedocs/gcc/
     https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html
     https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/
