@@ -13,13 +13,15 @@
 
 double l_fnreadDouble(FILE *fptr, size_t len)
 {
-    double d = 0.0;
+    double d = .0F;
     char *tmp = l_fnreadStr(fptr, len);
     if (tmp == NULL)
         fprintf(stderr, "ERROR: Not enough memory.\n");
     else
     {
-        d = atof(l_nreplaceChar(tmp, ',', '.'));
+        for(register int i = 0; i < (int)strlen(tmp); i++)
+            if(tmp[i] == ',') tmp[i] = '.';
+        d = atof(tmp);
         free(tmp);
     }
     return d;

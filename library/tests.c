@@ -5,8 +5,11 @@ int main()
     /* declaring variables */
     char *s1, *s2, **vec;
     int integer;
+    double d = .0F;
     FILE *fptr;
 
+    d = l_fnreadDouble(stdin, 10);
+    printf("%lf\n", d);
     fptr = fopen("simple_test.txt", READ_MODE_ONLY);
     s1 = NULL;
 

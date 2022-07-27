@@ -35,8 +35,6 @@ int main(void) {
     // 'strcmp()' is replaced with 'wcscmp()'
     // 'printf("")' is replaced with 'wprintf(L"")'
 
-
-
     wchar_t *ws = (wchar_t *)malloc((MAX + 1) * sizeof(wchar_t));
     fgetws(ws, MAX, stdin);
     wprintf(L"%ls\n", ws);
