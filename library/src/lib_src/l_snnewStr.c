@@ -11,6 +11,10 @@
 
 #include "../lib.h"
 
+/**
+ * @brief allocate memory for MAXLEN characters and define variable with empty string if possible.
+ * @return new char pointer with empty value if possible, NULL if not.
+ * */
 char *l_snnewStr(void)
 {
     return l_nnewStr(maxlen);
