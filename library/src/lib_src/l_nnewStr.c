@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 10/07/2022
- * Last updated: 12/07/2022
+ * Last updated: 28/07/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -11,6 +11,12 @@
 
 #include "../lib.h"
 
+/**
+ * @brief allocate memory for LEN characters and define variable with empty string if possible.
+ *
+ * @param len amount of chars to be allocated.
+ * @return new char pointer with empty value if possible, NULL if not.
+ */
 char *l_nnewStr(size_t len)
 {
     char *tmp = NULL;
