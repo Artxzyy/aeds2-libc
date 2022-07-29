@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 27/07/2022
- * Last updated: 28/07/2022
+ * Last updated: 29/07/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -15,11 +15,11 @@
  *  TODO document l_formatStrVector
  * */
 char *l_formatStrVector(size_t maxSize, char *format, ...) {
-    char *result = l_nnewStr(maxSize);
+    char *result = l_newStr(maxSize);
     if(result != NULL) {
         va_list ap;
         va_start(ap, format);
-        char *tmp = l_nnewStr(maxSize);
+        char *tmp = l_newStr(maxSize);
         while(*format)
         {
             if(*format == '%') {
@@ -109,8 +109,8 @@ char *l_formatStrVector(size_t maxSize, char *format, ...) {
             }
             format++;
         }
-        va_end(ap);
         free(tmp);
+        va_end(ap);
     }
     return result;
 }
