@@ -8,7 +8,7 @@ SRCS = bin/$(MAIN_FILE_NAME).o bin/l_globals.o bin/l_nnewStr.o bin/l_snnewStr.o 
 			bin/l_freadInt.o bin/l_readInt.o bin/l_fnreadBool.o bin/l_nreadBool.o bin/l_fsnreadBool.o \
 			bin/l_readBool.o bin/l_fnreadnStr.o bin/l_fsnreadnStr.o bin/l_nreadnStr.o bin/l_freadnStr.o \
 			bin/l_fnreadnInt.o bin/l_fsnreadnInt.o bin/l_nreadnInt.o bin/l_freadnInt.o bin/l_pause.o \
-			bin/l_formatPrint.o
+			bin/l_formatPrintVector.o bin/l_formatStrVector.o
 CFLAGS = -c -W -Wall -pedantic
 SRC_DIR = src/lib_src
 
@@ -137,8 +137,11 @@ bin/l_freadnInt.o: src
 bin/l_pause.o: src
 		gcc -o bin/l_pause.o $(SRC_DIR)/l_pause.c $(CFLAGS)
 
-bin/l_formatPrint.o: src
-		gcc -o bin/l_formatPrint.o $(SRC_DIR)/l_formatPrint.c $(CFLAGS)
+bin/l_formatPrintVector.o: src
+		gcc -o bin/l_formatPrintVector.o $(SRC_DIR)/l_formatPrintVector.c $(CFLAGS)
+
+bin/l_formatStrVector.o: src
+		gcc -o bin/l_formatStrVector.o $(SRC_DIR)/l_formatStrVector.c $(CFLAGS)
 
 clean:
 		rm bin/*.o $(EXECUTABLE)

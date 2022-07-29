@@ -2,6 +2,8 @@
 
 int main()
 {
+    maxlen = 4096;
+
     /* declaring variables */
     char *s1, *s2, **vec;
     int integer;
@@ -43,10 +45,11 @@ int main()
     printf("Remaining of line: %s\n", s1);
 
     printf("\nl_formatPrint tests:\n\n");
-    double *ni = (double *) malloc(20 * sizeof(double));
+    int *ni = (int *) malloc(20 * sizeof(int));
     for(register int i = 1; i < 21; ++i)
-        ni[i-1] = ((i + (125.0/i))*i*i)/(i+2.0);
-    l_formatPrint("{%i - %c _ %f (%lf) ** %s [${s}] => %p - %p | ${g}}\n", 10, '&', 10.5, 843.197287122379, "ABC",
-                  vec, 22, ", ", vec, &vec, ni, 20, " ");
+        ni[i-1] = ((i + (125/i))*i*i)/(i+2);
+    l_formatPrintVector("[%s], { %i }\n", vec, 22, ", ", ni, 20, " ");
+    strcpy(s1, l_formatStrVector(maxlen, "[%i] - [%s]", ni, 20, ", ", vec, 22, " - "));
+    printf("l_formatStrVector: %s\n", s1);
     return EXIT_SUCCESS;
 }
