@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 11/07/2022
- * Last updated: 28/07/2022
+ * Last updated: 29/07/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -13,12 +13,24 @@
 
 /**
  * @brief Read a string from stdin and, if possible, casts it
- * into the double pointer 'd'.
+ * into a double variable.
  *
- * @param d max length of string
+ * @param fptr file stream
  * @param len max length of string
+ * @return string parsed as a double variable if possible, 0.0 if not
  */
-void l_readDouble(double *d, size_t len)
+double l_readDouble(FILE *fptr, size_t len)
 {
-    *d = l_fnreadDouble(stdin, len);
+    double d = .0F;
+    char *tmp = l_readStr(fptr, len);
+    if (tmp == NULL)
+        fprintf(stderr, "ERROR: Not enough memory.\n");
+    else
+    {
+        for(register int i = 0; i < (int)strlen(tmp); i++)
+            if(tmp[i] == ',') tmp[i] = '.';
+        d = atof(tmp);
+        free(tmp);
+    }
+    return d;
 }

@@ -27,18 +27,6 @@
     https://gcc.gnu.org/onlinedocs/gcc/
     https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html
     https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/
-
-    General conventions used in implementations:
-
-    All functions with the prefix 'n' return a value generated inside itself.
-    For example: the function "nreadDouble()" is different from "readDouble()"
-    because it returns a value for you to define a variable outside the function,
-    meanwhile the latter usually receives an extra parameter (a pointer to a double variable in this case)
-    which will be defined inside the function itself.
-
-    f  conventions  (...)
-    s conventions  (...)
-
 */
 
 #ifndef _LIB_H
@@ -60,81 +48,43 @@ extern const char CR;
 
 extern size_t maxlen;
 
-extern char * l_nnewStr(size_t len);
+extern char *l_sNewStr(void);
 
-extern char *l_snnewStr(void);
-
-extern void l_newStr(char **, size_t);
+extern char *l_newStr(size_t);
 
 extern char *l_rbreak(char *);
 
-extern char *l_freadLine(char *, FILE *, size_t);
-
 extern char *l_readLine(char *, size_t);
 
-extern char *l_fsreadLine(char *, FILE *);
+extern char *l_sReadLine(char *, FILE *);
 
-extern char *l_fnreadStr(FILE *, size_t);
+extern char *l_readStr(FILE *, size_t);
 
-extern char *l_fsnreadStr(FILE *);
+extern char *l_sReadStr(FILE *);
 
-extern char *l_nreadStr(size_t);
+extern double l_sReadDouble(FILE *);
 
-extern double l_fnreadDouble(FILE *, size_t);
+extern double l_readDouble(FILE *, size_t);
 
-extern double l_fsnreadDouble(FILE *);
+extern float l_sReadFloat(FILE *);
 
-extern double l_nreadDouble(size_t);
+extern float l_readFloat(FILE *, size_t);
 
-extern void l_freadDouble(double *, FILE *, size_t);
+extern int l_sReadInt(FILE *);
 
-extern void l_readDouble(double *, size_t);
+extern int l_readInt(FILE *, size_t);
 
-extern float l_fnreadFloat(FILE *, size_t);
+extern bool l_sReadBool(FILE *);
 
-extern float l_fsnreadFloat(FILE *);
+extern bool l_readBool(FILE *, size_t);
 
-extern float l_nreadFloat(size_t);
+extern char **l_readNStr(int, FILE *, size_t);
 
-extern void l_freadFloat(float *, FILE *, size_t);
+extern char **l_sReadNStr(int, FILE *);
 
-extern void l_readFloat(float *, size_t);
+extern int *l_readNInt(int, FILE *, size_t);
 
-extern int l_fnreadInt(FILE *, size_t);
-
-extern int l_fsnreadInt(FILE *);
-
-extern int l_nreadInt(size_t);
-
-extern void l_freadInt(int *, FILE *, size_t);
-
-extern void l_readInt(int *, size_t);
-
-extern bool l_fnreadBool(FILE *, size_t);
-
-extern bool l_nreadBool(size_t);
-
-extern bool l_fsnreadBool(FILE *);
-
-extern void l_readBool(bool *, size_t);
-
-extern void l_freadBool(bool *, FILE *, size_t);
-
-extern char **l_fnreadnStr(int, FILE *, size_t);
-
-extern char **l_fsnreadnStr(int, FILE *);
-
-extern char **l_nreadnStr(int, size_t);
-
-extern void l_freadnStr(char **, int, FILE *, size_t);
-
-extern int *l_fnreadnInt(int, FILE *, size_t);
-
-extern int *l_fsnreadnInt(int, FILE *);
-
-extern void l_freadnInt(int **, int, FILE *, size_t);
-
-extern int *l_nreadnInt(int, size_t);
+extern int *l_sReadNInt(int, FILE *);
 
 extern void l_pause(void);
 

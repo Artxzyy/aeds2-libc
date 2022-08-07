@@ -16,9 +16,9 @@ const char LF  = '\n'; /* line feed - LF */
 const char CR  = '\r'; /* carriage return - CR */
 
 /*  This is not a constant, but a global variable.
-    You can re-define it as the max length for strings in your file
-    and call functions with 's' prefix without passing the max length
-    every time.
+    You can re-define it as the max length for strings and other vectors
+    in your file and call functions with 's' prefix without passing the
+    max length every time.
 
     The internal first definition is 255.
 

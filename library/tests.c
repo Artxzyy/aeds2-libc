@@ -10,28 +10,27 @@ int main()
     double d = .0F;
     FILE *fptr;
 
-    d = l_fnreadDouble(stdin, 10);
+    d = l_readDouble(stdin, 10);
     printf("%lf\n", d);
     fptr = fopen("simple_test.txt", READ_MODE_ONLY);
-    s1 = NULL;
-
+    s1 = l_sNewStr();
 
     printf("\nFile for simple implementations of most functions and methods of the library \"lib\"\n\n");
 
-    s2 = l_snnewStr();
-    l_fsreadLine(s2, fptr);
+    s2 = l_sNewStr();
+    l_sReadLine(s2, fptr);
     printf("First line: %s\n", s2);
     printf("5 next words: ");
     for (register int i = 0; i < 5; ++i) {
-        printf("%s ", l_fsnreadStr(fptr));
+        printf("%s ", l_sReadStr(fptr));
     }
     printf("\n");
 
-    integer = l_fnreadInt(fptr, 5);
+    integer = l_readInt(fptr, 5);
     printf("Next str parsed as an int, plus 25 | %i + 25 = %i\n", integer, (integer + 25));
 
-    printf("\nNext 22 words in a \"char **\" using \"l_fsnreadnStr()\"\n\n");
-    vec = l_fnreadnStr(22, fptr, maxlen);
+    printf("\nNext 22 words in a \"char **\" using \"l_sReadNStr()\"\n\n");
+    vec = l_readNStr(22, fptr, maxlen);
     for(register int i = 0; i < 22; ++i)
         printf("%s ", vec[i]);
     printf("\n");
@@ -39,9 +38,9 @@ int main()
     printf("Initial value for global \"maxlen\": %li\n", maxlen);
     maxlen += 245;
     printf("New value for global \"maxlen\": %li\n", maxlen);
-    l_newStr(&s1, maxlen);
+    l_newStr(maxlen);
 
-    l_fsreadLine(s1, fptr);
+    l_sReadLine(s1, fptr);
     printf("Remaining of line: %s\n", s1);
 
     printf("\nl_formatPrint tests:\n\n");

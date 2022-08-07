@@ -1,9 +1,9 @@
 /**
- * @file l_fnreadStr.c
+ * @file l_readStr.c
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 10/07/2022
- * Last updated: 28/07/2022
+ * Last updated: 29/07/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -20,9 +20,9 @@
  * @param len max length for char pointer
  * @return char*
  */
-char *l_fnreadStr(FILE *fptr, size_t len)
+char *l_readStr(FILE *fptr, size_t len)
 {
-    char *buffer = l_nnewStr(len);
+    char *buffer = l_newStr(len);
     if (buffer == NULL)
         fprintf(stderr, "ERROR: Not enough memory.\n");
     else

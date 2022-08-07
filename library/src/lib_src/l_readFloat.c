@@ -13,12 +13,13 @@
 
 /**
  * @brief Read a string from stdin and, if possible, casts it
- * into the float pointer 'f'.
+ * into a float variable.
  *
- * @param f float pointer to receive parsed value
- * @param len max length of string
+ * @param fptr file stream
+ * @param len max string size
+ * @return string parsed as a float variable if possible, 0.0 if not
  */
-void l_readFloat(float *f, size_t len)
+float l_readFloat(FILE *fptr, size_t len)
 {
-    *f = (float)l_fnreadDouble(stdin, len);
+    return (float)l_readDouble(fptr, len);
 }

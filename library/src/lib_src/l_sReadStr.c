@@ -1,5 +1,5 @@
 /**
- * @file l_fsnreadStr.c
+ * @file l_sReadStr.c
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 10/07/2022
@@ -20,7 +20,7 @@
  * @param fptr file stream
  * @return char*
  */
-char *l_fsnreadStr(FILE *fptr)
+char *l_sReadStr(FILE *fptr)
 {
-    return l_fnreadStr(fptr, maxlen);
+    return l_readStr(fptr, maxlen);
 }

@@ -1,5 +1,5 @@
 /**
- * @file l_fsnreadInt.c
+ * @file l_sReadInt.c
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 11/07/2022
@@ -19,7 +19,7 @@
  * @param fptr file stream
  * @return string parsed as an integer variable if possible, 0.0 if not
  */
-int l_fsnreadInt(FILE *fptr)
+int l_sReadInt(FILE *fptr)
 {
-    return l_fnreadInt(fptr, maxlen);
+    return l_readInt(fptr, maxlen);
 }
