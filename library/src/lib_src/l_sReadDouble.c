@@ -1,5 +1,5 @@
 /**
- * @file l_nreadFloat.c
+ * @file l_sReadDouble.c
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 11/07/2022
@@ -13,12 +13,13 @@
 
 /**
  * @brief Read a string from stdin and, if possible, casts it
- * into a float pointer.
+ * into a double variable.
+ * Uses the global MAXLEN as max string length.
  *
- * @param len max length of string
- * @return string parsed as a float if possible, 0.0 if not
+ * @param fptr file stream
+ * @return string parsed as a double variable if possible, 0.0 if not
  */
-float l_nreadFloat(size_t len)
+double l_sReadDouble(FILE *fptr)
 {
-    return (float)l_fnreadDouble(stdin, len);
+    return l_readDouble(fptr, maxlen);
 }

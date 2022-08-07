@@ -1,9 +1,9 @@
 /**
- * @file l_fsnreadnInt.c
+ * @file l_readNInt.c
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 11/07/2022
- * Last updated: 28/07/2022
+ * Last updated: 29/07/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -17,10 +17,21 @@
  *
  * @param n amount of integers to read
  * @param fptr file stream to be read
+ * @param max_len max string length to be parsed
  *
  * @return new int pointer with N values read
  * */
-int *l_fsnreadnInt(int n, FILE *fptr)
+int *l_readNInt(int n, FILE *fptr, size_t max_len)
 {
-    return l_fnreadnInt(n, fptr, maxlen);
+    int *ni = (int *)malloc(n * sizeof(int));
+    if (ni == NULL)
+        fprintf(stderr, "ERROR: Not enough memory.\n");
+    else
+    {
+        char *tmp = l_newStr(max_len);
+        for (register int i = 0; i < n; i++)
+            ni[i] = (strcpy(tmp, l_readStr(fptr, max_len)), atoi(tmp));
+        free(tmp);
+    }
+    return ni;
 }
