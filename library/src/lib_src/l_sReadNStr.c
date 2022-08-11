@@ -12,7 +12,7 @@
 #include "../lib.h"
 
 /**
- * @brief Read a sequence of 'n' strings separated by white-space or line feed
+ * @brief Read a sequence of 'n' strings separated by white-space or '\\n'
  * with any file stream, having max length of 'max_len' and returns an array of char pointers.
  *
  * @param n amount of string to read

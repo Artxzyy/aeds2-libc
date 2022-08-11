@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 11/07/2022
- * Last updated: 28/07/2022
+ * Last updated: 10/08/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -17,7 +17,7 @@
  * Uses the global MAXLEN as max string length.
  *
  * @param fptr file stream
- * @return string parsed as an integer variable if possible, 0.0 if not
+ * @return string parsed as an integer variable if possible, 0 if not
  */
 int l_sReadInt(FILE *fptr)
 {

@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 11/07/2022
- * Last updated: 29/07/2022
+ * Last updated: 10/08/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -19,13 +19,13 @@
  *
  * @param fptr file stream
  * @param len max length of string
- * @return parsed value as true or false
+ * @return parsed string value as true or false
  */
 bool l_readBool(FILE *fptr, size_t len)
 {
     bool b = false;
     char *tmp = l_readStr(fptr, len);
-    if (tmp == NULL)
+    if (!tmp)
         fprintf(stderr, "ERROR: Not enough memory.\n");
     else
     {

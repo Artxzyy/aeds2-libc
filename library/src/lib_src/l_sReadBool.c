@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 11/07/2022
- * Last updated: 28/07/2022
+ * Last updated: 10/08/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -19,7 +19,7 @@
  * Uses the global MAXLEN as max string length.
  *
  * @param fptr file stream
- * @return parsed value as true or false
+ * @return parsed string value as true or false
  */
 bool l_sReadBool(FILE *fptr)
 {

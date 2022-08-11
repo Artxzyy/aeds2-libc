@@ -12,12 +12,12 @@
 #include "../lib.h"
 
 /**
- * @brief Read a string from stdin and, if possible, casts it
+ * @brief Read a string from any file stream and, if possible, casts it
  * into a double variable.
  *
  * @param fptr file stream
- * @param len max length of string
- * @return string parsed as a double variable if possible, 0.0 if not
+ * @param len max length for string
+ * @return string parsed as a double variable if possible, .0F if not
  */
 double l_readDouble(FILE *fptr, size_t len)
 {
