@@ -5,7 +5,7 @@
  * @version 0.4
  *
  * Created: 22/07/2022
- * Last updated: 10/07/2022
+ * Last updated: 08/08/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -27,6 +27,11 @@
     https://gcc.gnu.org/onlinedocs/gcc/
     https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html
     https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/
+
+    How to use stdarg.h:
+
+    https://linux.die.net/man/3/stdarg
+    https://petbcc.ufscar.br/stdarg/
 */
 
 #ifndef _LIB_H

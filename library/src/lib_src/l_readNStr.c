@@ -12,10 +12,11 @@
 #include "../lib.h"
 
 /**
- * @brief Read a sequence of 'n' strings separated by white-space or line feed
+ * @brief Read a sequence of 'n' strings separated by white-space or '\\n'
  * with any file stream, having max length of 'max_len' and returns an array of char pointers.
  *
- * @param n amount of string to read
+ * @param n amount of strings to read
+ * @param fptr file stream
  * @param max_len max length of each string
  *
  * @return array of char pointers
@@ -23,12 +24,12 @@
 char **l_readNStr(int n, FILE *fptr, size_t max_len)
 {
     char **m = (char **)malloc(n * sizeof(char *));
-    if (m == NULL)
+    if (!m)
         fprintf(stderr, "ERROR: Not enough memory.\n");
     else
     {
         char *tmp = l_newStr(max_len);
-        if(tmp != NULL)
+        if(tmp)
         {
             for (register int i = 0; i < n; i++)
             {

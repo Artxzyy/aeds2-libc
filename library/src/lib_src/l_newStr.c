@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 10/07/2022
- * Last updated: 29/07/2022
+ * Last updated: 10/08/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -21,10 +21,10 @@ char *l_newStr(size_t len)
 {
     char *tmp = NULL;
 
-    /* size_t is unsigned int, which means it can't be negative,
+    /* size_t is unsigned long, which means it can't be negative,
        so it will have unpredicted actions and possibly never
-       enter the "if" statement if not converted to a signed int. */
-    if ((int)len <= 0)
+       enter the "if" statement if not converted to a signed long. */
+    if ((long)len <= 0)
         fprintf(stderr, "ERROR: Invalid length.\n");
     else
     {

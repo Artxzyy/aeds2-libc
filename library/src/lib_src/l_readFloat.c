@@ -12,7 +12,7 @@
 #include "../lib.h"
 
 /**
- * @brief Read a string from stdin and, if possible, casts it
+ * @brief Read a string from any file stream and, if possible, casts it
  * into a float variable.
  *
  * @param fptr file stream
