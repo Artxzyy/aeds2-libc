@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 27/07/2022
- * Last updated: 29/07/2022
+ * Last updated: 13/08/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -12,11 +12,27 @@
 #include "../lib.h"
 
 /**
- *  TODO document l_formatStrVector
- * */
+ * @brief Method for building strings with 2d vectors or pointers to char pointers
+ * with a specific format and separator for each value.
+ * Any character that isn't a format will be printed normally as a CHAR.
+ * Vector formats accepted: %s, %i, %d, %g.
+ * Format Application:
+ *
+ * l_formatStrVector(maxlen, "{%s} - {%g}", strVector, strVectorSize, strSeparator,
+ * floatVector, floatVectorSize, floatSeparator);
+ *
+ * Go to "lib1file/tests.c" to see example applications.
+ * It works just the same as l_formatPrintVector, with the only difference being that
+ * this one returns a string for you to use after.
+ *
+ * @param maxSize max string size to be returned
+ * @param format string with format of parameters to be printed
+ *
+ * @return formatted string
+ **/
 char *l_formatStrVector(size_t maxSize, char *format, ...) {
     char *result = l_newStr(maxSize);
-    if(result != NULL) {
+    if(result) {
         va_list ap;
         va_start(ap, format);
         char *tmp = l_newStr(maxSize);

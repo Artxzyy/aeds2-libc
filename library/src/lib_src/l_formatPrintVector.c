@@ -3,7 +3,7 @@
  * @author Arthur Rodrigues Soares de Quadros ( aquadros\@sga.pucminas.br )
  *
  * Created: 11/07/2022
- * Last updated: 27/07/2022
+ * Last updated: 13/08/2022
  *
  * @copyright Copyright (c) 2022
  *
@@ -20,6 +20,10 @@
  *
  * l_formatPrintVector("{%s} - {%g}", strVector, strVectorSize, strSeparator,
  * floatVector, floatVectorSize, floatSeparator);
+ *
+ * Go to "lib1file/tests.c" to see example applications.
+ *
+ * @param format string with format of parameters to be printed
  **/
 void l_formatPrintVector(char *format, ...)
 {

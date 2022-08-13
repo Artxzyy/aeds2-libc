@@ -21,10 +21,23 @@
 #define WRITE_MODE_ONLY   "w"
 #define APPEND_MODE_ONLY  "a"
 
-const char NUL = 0;
-const char LF = 10;
-const char CR = 13;
+/*  This is not a constant, but a global variable.
+    You can re-define it as the max length for strings and other vectors
+    in your file and call functions with 's' prefix without passing the
+    max length every time.
 
+    The internal first definition is 255.
+
+    The best way to declare and define a global variable in
+    a deeply nested C project is declaring the global variable
+    in a header file (as declared in "extern int maxlen;") and
+    defining it ONLY ONCE in one of the other files used
+    (e.g "int maxlen = 255;" in ONE file that includes this one).
+    And for possibly changing the value in other files, you simply
+    change it (e.g "maxlen = 300;" or "maxlen += 50;").
+
+    In this file, the global was declared and defined at the same time, but
+    in the "library" folder it followed this structure. */
 size_t maxlen = 255;
 
 /**
@@ -39,12 +52,11 @@ char *l_newStr(size_t len) {
     /* size_t is unsigned long, which means it can't be negative,
        so it will have unpredicted actions and possibly never
        enter the "if" statement if not converted to a signed long. */
-    if ((long)len <= 0)
+    if ((long) len <= 0)
         fprintf(stderr, "ERROR: Invalid length.\n");
-    else
-    {
-        tmp = (char *)malloc((len + 1) * sizeof(char));
-        if(tmp)
+    else {
+        tmp = (char *) malloc((len + 1) * sizeof(char));
+        if (tmp)
             strcpy(tmp, "");
         else
             fprintf(stderr, "ERROR: Not enough memory.\n");
@@ -65,9 +77,8 @@ char *l_sNewStr(void) {
  * Internal use function.
  */
 char *l_rbreak(char *s) {
-    for (; *s != LF && *s != CR; s++)
-        ;
-    *s = NUL;
+    for (; *s != 10 && *s != 13; s++);
+    *s = 0;
     return s;
 }
 
@@ -80,7 +91,7 @@ char *l_rbreak(char *s) {
  * @return string with the line read.
  */
 char *l_readLine(char *s, size_t len, FILE *fptr) {
-    return l_rbreak(fgets(s, (int)len, fptr));
+    return l_rbreak(fgets(s, (int) len, fptr));
 }
 
 /**
@@ -92,7 +103,7 @@ char *l_readLine(char *s, size_t len, FILE *fptr) {
  * @return string with the line read.
  */
 char *l_sReadLine(char *s, FILE *fptr) {
-    return l_rbreak(fgets(s, (int)maxlen, fptr));
+    return l_rbreak(fgets(s, (int) maxlen, fptr));
 }
 
 /**
@@ -108,13 +119,12 @@ char *l_readStr(FILE *fptr, size_t len) {
     char *buffer = l_newStr(len);
     if (!buffer)
         fprintf(stderr, "ERROR: Not enough memory.\n");
-    else
-    {
+    else {
         int c;
         char *tmp = buffer;
-        while ((c = getc(fptr)) != LF && c != ' ' && c != CR && len > 0)
-            *tmp++ = (len--, (char)c);
-        tmp = ((*tmp++ = NUL), NULL);
+        while ((c = getc(fptr)) != 10 && c != ' ' && c != 13 && len > 0)
+            *tmp++ = (len--, (char) c);
+        tmp = ((*tmp++ = 0), NULL);
         free(tmp);
     }
     return buffer;
@@ -146,10 +156,9 @@ double l_readDouble(FILE *fptr, size_t len) {
     char *tmp = l_readStr(fptr, len);
     if (!tmp)
         fprintf(stderr, "ERROR: Not enough memory.\n");
-    else
-    {
-        for(register int i = 0; i < (int)strlen(tmp); i++)
-            if(tmp[i] == ',') tmp[i] = '.';
+    else {
+        for (register int i = 0; i < (int) strlen(tmp); i++)
+            if (tmp[i] == ',') tmp[i] = '.';
         d = atof(tmp);
         free(tmp);
     }
@@ -176,9 +185,8 @@ double l_sReadDouble(FILE *fptr) {
  * @param len max string size
  * @return string parsed as a float variable if possible, 0.0 if not
  */
-float l_readFloat(FILE *fptr, size_t len)
-{
-    return (float)l_readDouble(fptr, len);
+float l_readFloat(FILE *fptr, size_t len) {
+    return (float) l_readDouble(fptr, len);
 }
 
 /**
@@ -190,7 +198,7 @@ float l_readFloat(FILE *fptr, size_t len)
  * @return string parsed as a float variable if possible, 0.0 if not
  */
 float l_sReadFloat(FILE *fptr) {
-    return (float)l_readDouble(fptr, maxlen);
+    return (float) l_readDouble(fptr, maxlen);
 }
 
 /**
@@ -201,14 +209,12 @@ float l_sReadFloat(FILE *fptr) {
  * @param len max length of string
  * @return string parsed as an int if possible, 0 if not
  */
-int l_readInt(FILE *fptr, size_t len)
-{
+int l_readInt(FILE *fptr, size_t len) {
     int i = 0;
     char *tmp = l_readStr(fptr, len);
     if (!tmp)
         fprintf(stderr, "ERROR: Not enough memory.\n");
-    else
-    {
+    else {
         i = atoi(tmp);
         free(tmp);
     }
@@ -223,8 +229,7 @@ int l_readInt(FILE *fptr, size_t len)
  * @param fptr file stream
  * @return string parsed as an integer variable if possible, 0 if not
  */
-int l_sReadInt(FILE *fptr)
-{
+int l_sReadInt(FILE *fptr) {
     return l_readInt(fptr, maxlen);
 }
 
@@ -238,14 +243,12 @@ int l_sReadInt(FILE *fptr)
  * @param len max length of string
  * @return parsed string value as true or false
  */
-bool l_readBool(FILE *fptr, size_t len)
-{
+bool l_readBool(FILE *fptr, size_t len) {
     bool b = false;
     char *tmp = l_readStr(fptr, len);
     if (!tmp)
         fprintf(stderr, "ERROR: Not enough memory.\n");
-    else
-    {
+    else {
         if ((!strcmp(tmp, "verdadeiro")) ||
             (!strcmp(tmp, "VERDADEIRO")) ||
             (!strcmp(tmp, "true")) ||
@@ -269,8 +272,7 @@ bool l_readBool(FILE *fptr, size_t len)
  * @param fptr file stream
  * @return parsed string value as true or false
  */
-bool l_sReadBool(FILE *fptr)
-{
+bool l_sReadBool(FILE *fptr) {
     return l_readBool(fptr, maxlen);
 }
 
@@ -285,16 +287,13 @@ bool l_sReadBool(FILE *fptr)
  * @return array of char pointers
  */
 char **l_readNStr(int n, FILE *fptr, size_t max_len) {
-    char **m = (char **)malloc(n * sizeof(char *));
+    char **m = (char **) malloc(n * sizeof(char *));
     if (!m)
         fprintf(stderr, "ERROR: Not enough memory.\n");
-    else
-    {
+    else {
         char *tmp = l_newStr(max_len);
-        if(tmp)
-        {
-            for (register int i = 0; i < n; i++)
-            {
+        if (tmp) {
+            for (register int i = 0; i < n; i++) {
                 strcpy(tmp, l_readStr(fptr, max_len));
                 m[i] = l_newStr(strlen(tmp));
                 strcpy(m[i], tmp);
@@ -329,11 +328,10 @@ char **l_sReadNStr(int n, FILE *fptr) {
  * @return new int pointer with N values read
  * */
 int *l_readNInt(int n, FILE *fptr, size_t max_len) {
-    int *ni = (int *)malloc(n * sizeof(int));
+    int *ni = (int *) malloc(n * sizeof(int));
     if (!ni)
         fprintf(stderr, "ERROR: Not enough memory.\n");
-    else
-    {
+    else {
         char *tmp = l_newStr(max_len);
         for (register int i = 0; i < n; i++)
             ni[i] = (strcpy(tmp, l_readStr(fptr, max_len)), atoi(tmp));
@@ -358,9 +356,8 @@ int *l_sReadNInt(int n, FILE *fptr) {
 /**
  * @brief General pause in the terminal.
  */
-void l_pause(void)
-{
-     getchar();
+void l_pause(void) {
+    getchar();
 }
 
 /**
@@ -372,14 +369,16 @@ void l_pause(void)
  *
  * l_formatPrintVector("{%s} - {%g}", strVector, strVectorSize, strSeparator,
  * floatVector, floatVectorSize, floatSeparator);
+ *
+ * Go to "tests.c" to see example applications.
+ *
+ * @param format string with format of parameters to be printed
  **/
-void l_formatPrintVector(char *format, ...)
-{
+void l_formatPrintVector(char *format, ...) {
     va_list ap;
     va_start(ap, format);
-    while(*format)
-    {
-        if(*format == '%') {
+    while (*format) {
+        if (*format == '%') {
             size_t n;
             char *sep;
 
@@ -431,12 +430,11 @@ void l_formatPrintVector(char *format, ...)
                         printf("%s%s", m[i], sep);
                     printf("%s", m[n - 1]);
                 }
-            } else if(*(format + 1) == '%') {
+            } else if (*(format + 1) == '%') {
                 printf("%%");
             }
             format++;
-        }
-        else
+        } else
             printf("%c", *format);
         format++;
     }
@@ -444,17 +442,32 @@ void l_formatPrintVector(char *format, ...)
 }
 
 /**
- *  TODO document l_formatStrVector
- * */
+ * @brief Method for building strings with 2d vectors or pointers to char pointers
+ * with a specific format and separator for each value.
+ * Any character that isn't a format will be printed normally as a CHAR.
+ * Vector formats accepted: %s, %i, %d, %g.
+ * Format Application:
+ *
+ * l_formatStrVector(maxlen, "{%s} - {%g}", strVector, strVectorSize, strSeparator,
+ * floatVector, floatVectorSize, floatSeparator);
+ *
+ * Go to "tests.c" to see example applications.
+ * It works just the same as l_formatPrintVector, with the only difference being that
+ * this one returns a string for you to use after.
+ *
+ * @param maxSize max string size to be returned
+ * @param format string with format of parameters to be printed
+ *
+ * @return formatted string
+ **/
 char *l_formatStrVector(size_t maxSize, char *format, ...) {
     char *result = l_newStr(maxSize);
-    if(result != NULL) {
+    if (result) {
         va_list ap;
         va_start(ap, format);
         char *tmp = l_newStr(maxSize);
-        while(*format)
-        {
-            if(*format == '%') {
+        while (*format) {
+            if (*format == '%') {
                 size_t n;
                 char *sep;
 
@@ -467,12 +480,10 @@ char *l_formatStrVector(size_t maxSize, char *format, ...) {
                     if (n == 1) {
                         sprintf(tmp, "%i", ni[0]);
                         strcat(result, tmp);
-                    }
-                    else if (n == 2) {
+                    } else if (n == 2) {
                         sprintf(tmp, "%i%s%i", ni[0], sep, ni[1]);
                         strcat(result, tmp);
-                    }
-                    else if (n > 2) {
+                    } else if (n > 2) {
                         sprintf(tmp, "%i%s", ni[0], sep);
                         strcat(result, tmp);
                         for (register int i = 1; i < (int) n - 1; ++i) {
@@ -491,12 +502,10 @@ char *l_formatStrVector(size_t maxSize, char *format, ...) {
                     if (n == 1) {
                         sprintf(tmp, "%g", nd[0]);
                         strcat(result, tmp);
-                    }
-                    else if (n == 2) {
+                    } else if (n == 2) {
                         sprintf(tmp, "%g%s%g", nd[0], sep, nd[1]);
                         strcat(result, tmp);
-                    }
-                    else if (n > 2) {
+                    } else if (n > 2) {
                         sprintf(tmp, "%g%s", nd[0], sep);
                         strcat(result, tmp);
                         for (register int i = 1; i < (int) n - 1; ++i) {
@@ -515,12 +524,10 @@ char *l_formatStrVector(size_t maxSize, char *format, ...) {
                     if (n == 1) {
                         sprintf(tmp, "%s", m[0]);
                         strcat(result, tmp);
-                    }
-                    else if (n == 2) {
+                    } else if (n == 2) {
                         sprintf(tmp, "%s%s%s", m[0], sep, m[1]);
                         strcat(result, tmp);
-                    }
-                    else if (n > 2) {
+                    } else if (n > 2) {
                         sprintf(tmp, "%s%s", m[0], sep);
                         strcat(result, tmp);
                         for (register int i = 1; i < (int) n - 1; ++i) {
@@ -530,12 +537,11 @@ char *l_formatStrVector(size_t maxSize, char *format, ...) {
                         sprintf(tmp, "%s", m[n - 1]);
                         strcat(result, tmp);
                     }
-                } else if(*(format + 1) == '%') {
+                } else if (*(format + 1) == '%') {
                     strcat(result, "%");
                 }
                 format++;
-            }
-            else {
+            } else {
                 sprintf(tmp, "%c", *format);
                 strcat(result, tmp);
             }

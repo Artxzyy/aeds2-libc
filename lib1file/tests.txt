@@ -1,0 +1,13 @@
+15000
+150000
+1234,12345
+1234.12345678
+VERDADEIRO
+V
+Verdadeiro
+Num ninho de mafagafos há sete mafagafinhos. Quando a mafagafa gafa, gafam os sete mafagafinhos.
+Se vaivém fosse e viesse, vaivém ia, mas como vaivém vai e não vem, vaivém não vai.
+String1
+String 2
+10 100 11 110 120
+abc def ghi jkl
